@@ -1,1 +1,18 @@
-
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <fstream>
+using namespace std;
+using namespace sf;
+class maze
+{
+private:
+int row;
+int coloumn;
+Squareshape shape;
+Texture texture;
+public:
+maze(int rowx,coloumnx,string imageName);
+void drawOnWindow(RenderWindow& window);
+int getRow();
+intgetRow();
+}
