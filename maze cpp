@@ -1,1 +1,21 @@
-
+#include "maze.h"
+maze::maze(int rowx,columnx,string imageName)
+{
+row = rowx;
+column = columnx;
+shape.setSize(Vector2f(70, 70));
+texture.loadFromFile(imageName);
+shape.setTexture(&texture);
+}
+void maze::drawOnWindow(RenderWindow& window)
+{
+window.draw(shape);
+}
+int maze::getRow()
+{
+return row;
+}
+int maze::getColumn()
+{
+return column;
+}
