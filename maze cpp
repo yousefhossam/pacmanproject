@@ -1,21 +1,41 @@
 #include "maze.h"
-maze::maze(int rowx,int columnx,string imageName)
+maze::maze(int rowx, int columnx, string imageName)
 {
-row = rowx;
-column = columnx;
-shape.setSize(Vector2f(70, 70));
-texture.loadFromFile(imageName);
-shape.setTexture(&texture);
+	row = rowx;
+	column = columnx;
+	shape.setSize(Vector2f(70, 70));
+	texture.loadFromFile(imageName);
+	shape.setTexture(&texture);
 }
 void maze::drawOnWindow(RenderWindow& window)
 {
-window.draw(shape);
+	window.draw(shape);
 }
 int maze::getRow()
 {
-return row;
+	return row;
 }
 int maze::getColumn()
 {
-return column;
+	return column;
+}
+void maze::moveUp()
+{
+	shape.move(0, -70);
+}
+void maze::moveDown()
+{
+	shape.move(0, -70);
+}
+void maze::moveLeft()
+{
+	shape.move(70, 0);
+}
+void maze::moveRight()
+{
+	shape.move(-70, 0);
+}
+void maze::blocked()
+{
+	shape.move(0, 0);
 }
