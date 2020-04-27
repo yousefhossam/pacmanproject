@@ -1,5 +1,5 @@
 #include "maze.h"
-maze::maze(int rowx,columnx,string imageName)
+maze::maze(int rowx,int columnx,string imageName)
 {
 row = rowx;
 column = columnx;
