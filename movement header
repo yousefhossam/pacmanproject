@@ -1,1 +1,18 @@
-
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <fstream>
+#include "maze.h"
+using namespace std;
+using namespace sf;
+class movement:public maze
+{
+private:
+int x;
+float moveSpeed;
+public:
+void moveForward();
+void turnBack();
+void turnRight();
+void turnLeft();
+void blocked();
+};
