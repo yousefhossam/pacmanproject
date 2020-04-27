@@ -6,13 +6,18 @@ using namespace sf;
 class maze
 {
 private:
-int row;
-int column;
-RectangleShape shape;
-Texture texture;
+	int row;
+	int column;
+	RectangleShape shape;
+	Texture texture;
 public:
-maze(int rowx,int coloumnx,string imageName);
-void drawOnWindow(RenderWindow& window);
-int getRow();
-int getColumn();
-}
+	maze(int rowx, int coloumnx, string imageName);
+	void drawOnWindow(RenderWindow& window);
+	int getRow();
+	int getColumn();
+	void moveUp();
+	void moveDown();
+	void moveLeft();
+	void moveRight();
+	void blocked();
+};
