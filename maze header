@@ -8,7 +8,7 @@ class maze
 private:
 int row;
 int column;
-Squareshape shape;
+RectangleShape shape;
 Texture texture;
 public:
 maze(int rowx,int coloumnx,string imageName);
