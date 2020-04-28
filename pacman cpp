@@ -1,43 +1,45 @@
 #include "pacman.h"
-pacman::pacman(Sprite& pac, Texture& pacTexture, Vector2f postion, Vector2f scale, const char* file)
+pacman::pacman(int initialRow, int initialColumn, string imageName)
 {
-	pac.setPosition(postion);
-	pacTexture.loadFromFile(file);
-	this->pacTexture = pacTexture;
-	pac.setTexture(pacTexture);
-	pac.setScale(scale);
-	this->pac = pac;
+	row = initialRow;
+	column = initialColumn;
+	rect.setSize(Vector2f(50, 50));
+	rect.setPosition(60 + 50 * initialColumn, 60 + 50 * initialRow);
+	texture.loadFromFile(imageName);
+	rect.setTexture(&texture);
 }
-void pacman::update()
+void pacman::move(char direction, int arr[rows][cols])
 {
-	pac.setPosition(rect.getPosition());
-}
-
-void pacman::updateMovement()
-{
-	if (direction == 0) {
-		if (move.right) {
-			rect.move(movementSpeed, 0);
-			pac.setTextureRect(IntRect(0, 16 * direction, 16, 16));
-		}
-	}
-	else if (direction == 1) {
-		if (move.left) 
+	if (direction == 'U' || direction == 'u')
+	{
+		if (arr[row - 1][column] != -1)
 		{
-			rect.move(-movementSpeed, 0);
-			pac.setTextureRect(IntRect(0, 16 * direction, 16, 16));
+			row--;
+			rect.move(0, -50);
 		}
 	}
-	else if (direction == 2) {
-		if (move.up) {
-			rect.move(0, -movementSpeed);
-			pac.setTextureRect(IntRect(0, 16 * direction, 16, 16));
+	else if (direction == 'D' || direction == 'd')
+	{
+		if (arr[row + 1][column] != -1)
+		{
+			row++;
+			rect.move(0, 50);
 		}
 	}
-	else if (direction == 3) {
-		if (move.down) {
-			rect.move(0, movementSpeed);
-			pac.setTextureRect(IntRect(0, 16 * direction, 16, 16));
+	else if (direction == 'R' || direction == 'r')
+	{
+		if (arr[row][column + 1] != -1)
+		{
+			column++;
+			rect.move(50, 0);
+		}
+	}
+	else if (direction == 'L' || direction == 'l')
+	{
+		if (arr[row][column - 1] != -1)
+		{
+			column--;
+			rect.move(-50, 0);
 		}
 	}
 }
