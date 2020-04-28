@@ -1,11 +1,14 @@
 #include <iostream>
-#include <maze.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Export.hpp>
 #include <SFML/System/Time.hpp>
+#include <iostream>
+#include <fstream>
+#include "maze.h"
 using namespace std;
 using namespace sf;
-
+using namespace std;
+using namespace sf;
 class pellets : public maze
 {
 private:
@@ -15,4 +18,5 @@ private:
 public:
 	bool powerPelletActive(int);
 };
+
 
