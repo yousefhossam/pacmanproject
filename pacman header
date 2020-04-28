@@ -5,11 +5,23 @@
 #include <iostream>
 #include <fstream>
 #include "pellets.h"
-class pacman:public pellets
+class pacman :public pellets
 {
 private:
+	struct move
+	{
+		bool up = true;
+		bool down = true;
+		bool right = true;
+		bool left = true;
+	}move;
 	Texture pacTexture;
 	Sprite pac;
+	float movementSpeed = 1;
+	int direction = 0;
+	RectangleShape rect;
 public:
 	pacman(Sprite& pac, Texture& pacTexture, Vector2f postion, Vector2f scale, const char* file);
+	void update();
+	void updateMovement();
 };
