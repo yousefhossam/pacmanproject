@@ -1,1 +1,29 @@
-
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/System/Export.hpp>
+#include <SFML/System/Time.hpp>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "pacman.h"
+using namespace std;
+using namespace sf;
+const int rows = 25, cols = 20;
+class ghosts : public pacman
+{
+private:
+	Texture texture;
+	RectangleShape blink;
+	RectangleShape ink;
+	RectangleShape pink;
+	RectangleShape clyd;
+	int row;
+	int column;
+public:
+	ghosts(int initialRow, int initialColumn, string imageName);
+	void move(RectangleShape x, char direction, int arr[rows][cols]);
+	void blinky(int initialRow, int initialColumn, string imageName);
+	void inky(int initialRow, int initialColumn, string imageName);
+	void pinky(int initialRow, int initialColumn, string imageName);
+	void clyde(int initialRow, int initialColumn, string imageName);
+};
