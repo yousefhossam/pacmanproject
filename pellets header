@@ -7,8 +7,6 @@
 #include "maze.h"
 using namespace std;
 using namespace sf;
-using namespace std;
-using namespace sf;
 class pellets : public maze
 {
 private:
