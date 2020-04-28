@@ -8,3 +8,36 @@ pacman::pacman(Sprite& pac, Texture& pacTexture, Vector2f postion, Vector2f scal
 	pac.setScale(scale);
 	this->pac = pac;
 }
+void pacman::update()
+{
+	pac.setPosition(rect.getPosition());
+}
+
+void pacman::updateMovement()
+{
+	if (direction == 0) {
+		if (move.right) {
+			rect.move(movementSpeed, 0);
+			pac.setTextureRect(IntRect(0, 16 * direction, 16, 16));
+		}
+	}
+	else if (direction == 1) {
+		if (move.left) 
+		{
+			rect.move(-movementSpeed, 0);
+			pac.setTextureRect(IntRect(0, 16 * direction, 16, 16));
+		}
+	}
+	else if (direction == 2) {
+		if (move.up) {
+			rect.move(0, -movementSpeed);
+			pac.setTextureRect(IntRect(0, 16 * direction, 16, 16));
+		}
+	}
+	else if (direction == 3) {
+		if (move.down) {
+			rect.move(0, movementSpeed);
+			pac.setTextureRect(IntRect(0, 16 * direction, 16, 16));
+		}
+	}
+}
