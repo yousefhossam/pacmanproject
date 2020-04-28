@@ -6,7 +6,7 @@
 using namespace std;
 using namespace sf;
 
-class pellets : public movement
+class pellets : public maze
 {
 private:
 	int x;
