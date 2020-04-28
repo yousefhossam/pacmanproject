@@ -1,1 +1,72 @@
-
+#include "ghosts.h"
+void ghosts::move(RectangleShape x,char direction, int arr[rows][cols])
+{
+	if (direction == 'U' || direction == 'u')
+	{
+		if (arr[row - 1][column] != -1)
+		{
+			row--;
+			x.move(0, -70);
+		}
+	}
+	else if (direction == 'D' || direction == 'd')
+	{
+		if (arr[row + 1][column] != -1)
+		{
+			row++;
+			x.move(0, 70);
+		}
+	}
+	else if (direction == 'R' || direction == 'r')
+	{
+		if (arr[row][column + 1] != -1)
+		{
+			column++;
+			x.move(70, 0);
+		}
+	}
+	else if (direction == 'L' || direction == 'l')
+	{
+		if (arr[row][column - 1] != -1)
+		{
+			column--;
+			x.move(-70, 0);
+		}
+	}
+}
+void ghosts::blinky(int initialRow, int initialColumn, string imageName)
+{
+	row = initialRow;
+	column = initialColumn;
+	blink.setSize(Vector2f(50, 50));
+	blink.setPosition(60 + 50 * initialColumn, 60 + 50 * initialRow); //el line da lesa mesh sah
+	texture.loadFromFile(imageName);
+	blink.setTexture(&texture);
+}
+void ghosts::inky(int initialRow, int initialColumn, string imageName)
+{
+	row = initialRow;
+	column = initialColumn;
+	ink.setSize(Vector2f(50, 50));
+	ink.setPosition(60 + 50 * initialColumn, 60 + 50 * initialRow); //el line da lesa mesh sah
+	texture.loadFromFile(imageName);
+	blink.setTexture(&texture);
+}
+void ghosts::pinky(int initialRow, int initialColumn, string imageName)
+{
+	row = initialRow;
+	column = initialColumn;
+	pink.setSize(Vector2f(50, 50));
+	pink.setPosition(60 + 50 * initialColumn, 60 + 50 * initialRow); //el line da lesa mesh sah
+	texture.loadFromFile(imageName);
+	blink.setTexture(&texture);
+}
+void ghosts::clyde(int initialRow, int initialColumn, string imageName)
+{
+	row = initialRow;
+	column = initialColumn;
+	clyd.setSize(Vector2f(50, 50));
+	clyd.setPosition(60 + 50 * initialColumn, 60 + 50 * initialRow); //el line da lesa mesh sah
+	texture.loadFromFile(imageName);
+	blink.setTexture(&texture);
+}
