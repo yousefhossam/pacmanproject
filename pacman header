@@ -1,0 +1,15 @@
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/System/Export.hpp>
+#include <SFML/System/Time.hpp>
+#include <iostream>
+#include <fstream>
+#include "pellets.h"
+class pacman:public pellets
+{
+private:
+	Texture pacTexture;
+	Sprite pac;
+public:
+	pacman(Sprite& pac, Texture& pacTexture, Vector2f postion, Vector2f scale, const char* file);
+};
