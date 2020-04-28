@@ -1,10 +1,9 @@
 #include "pellets.h"
-
 bool pellets::powerPelletActive(int)
 {
-	if (!(x == Pacman.getRow()))
+	if (!(x == pacman.getRow()))
 		return false;
-	else if (!(y == Pacman.getColumn()))
+	else if (!(y == pacman.getColumn()))
 		return false;
 
 	return true;
