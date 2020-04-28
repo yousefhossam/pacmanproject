@@ -1,0 +1,10 @@
+#include "pacman.h"
+pacman::pacman(Sprite& pac, Texture& pacTexture, Vector2f postion, Vector2f scale, const char* file)
+{
+	pac.setPosition(postion);
+	pacTexture.loadFromFile(file);
+	this->pacTexture = pacTexture;
+	pac.setTexture(pacTexture);
+	pac.setScale(scale);
+	this->pac = pac;
+}
