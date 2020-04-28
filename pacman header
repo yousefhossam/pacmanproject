@@ -4,24 +4,17 @@
 #include <SFML/System/Time.hpp>
 #include <iostream>
 #include <fstream>
-#include "pellets.h"
-class pacman :public pellets
+using namespace std;
+using namespace sf;
+const int rows = 25, cols = 20;
+class pacman
 {
 private:
-	struct move
-	{
-		bool up = true;
-		bool down = true;
-		bool right = true;
-		bool left = true;
-	}move;
-	Texture pacTexture;
-	Sprite pac;
-	float movementSpeed = 1;
-	int direction = 0;
+	Texture texture;
 	RectangleShape rect;
+	int row;
+	int column;
 public:
-	pacman(Sprite& pac, Texture& pacTexture, Vector2f postion, Vector2f scale, const char* file);
-	void update();
-	void updateMovement();
+	pacman(int initialRow, int initialColumn, string imageName);
+	void move(char direction, int arr[rows][cols]);
 };
