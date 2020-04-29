@@ -1,0 +1,82 @@
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/System/Export.hpp>
+#include <SFML/System/Time.hpp>
+#include <iostream>
+#include <fstream>
+#include "pacman.h"
+#include "ghosts.h"
+#include "maze.h"
+#include "menu.h"
+using namespace std;
+using namespace sf;
+const int rows = 22, cols = 19;
+int main()
+{
+	RenderWindow window;
+	window.create(VideoMode(800, 800), "Pacman");
+	int arr[rows][cols];
+	ifstream inputFile;
+	inputFile.open("Board.txt");
+	if (inputFile.is_open())
+	{
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				if (!inputFile.eof())
+					inputFile >> arr[i][j];
+	}
+	inputFile.close();
+	Texture bricksTexture, grassTexture;
+	bricksTexture.loadFromFile("Blue.jpg");
+	grassTexture.loadFromFile("Grass.png");
+	RectangleShape board[rows][cols];
+	for (int i = 0; i < rows; i++)
+		for (int j = 0; j < cols; j++)
+		{
+			board[i][j].setPosition(50 + 35 * j, 50 + 35 * i);
+			board[i][j].setSize(Vector2f(35, 35));
+			if (arr[i][j] == -1)
+			{
+				board[i][j].setTexture(&bricksTexture);
+				board[i][j].setFillColor(Color::Cyan);
+			}
+			else
+			{
+				board[i][j].setFillColor(Color::Black);
+			}
+		}
+	Event e;
+	pacman x(1, 1, "Pacman.jpg");
+	while (window.isOpen())
+	{
+		while (window.pollEvent(e))
+		{
+			if (e.type == Event::Closed)
+				window.close();
+			else if (e.type == Event::KeyPressed)
+			{
+				switch (e.key.code)
+				{
+				case Keyboard::Up:
+					x.move('U', arr);
+					break;
+				case Keyboard::Down:
+					x.move('D', arr);
+					break;
+				case Keyboard::Right:
+					x.move('R', arr);
+					break;
+				case Keyboard::Left:
+					x.move('L', arr);
+					break;
+				}
+			}
+		}
+		window.clear();
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				window.draw(board[i][j]);
+		x.drawOnWindow(window);
+		window.display();
+	}
+}
