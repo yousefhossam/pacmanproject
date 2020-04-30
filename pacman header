@@ -4,9 +4,10 @@
 #include <SFML/System/Time.hpp>
 #include <iostream>
 #include <fstream>
+#include <chrono>
+#include <thread>
 using namespace std;
 using namespace sf;
-const int rows = 25, cols = 20;
 class pacman
 {
 private:
@@ -14,7 +15,11 @@ private:
 	RectangleShape rect;
 	int row;
 	int column;
+	char D;
 public:
-	pacman(int initialRow, int initialColumn, string imageName);
-	void move(char direction, int arr[rows][cols]);
+	pacman(int initialRow, int initialColumn, string name);
+	void move(char direction, int arr[][19]);
+	void drawOnWindow(RenderWindow& window);
+	void setD(char d);
+	char getD();
 };
