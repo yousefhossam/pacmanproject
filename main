@@ -11,6 +11,14 @@
 using namespace std;
 using namespace sf;
 const int rows = 22, cols = 19;
+
+enum tilestate{empty,rock,pallet};
+struct tile {
+	RectangleShape r;
+	//bool walkable;	//1 means can stand on it
+	//bool cp;		//1 means has a pallet
+	tilestate s;
+};
 int main()
 {
 	RenderWindow window;
@@ -26,7 +34,7 @@ int main()
 					inputFile >> arr[i][j];
 	}
 	inputFile.close();
-	Texture bricksTexture, grassTexture;
+	Texture bricksTexture, grassTexture,pacmanTexture;
 	bricksTexture.loadFromFile("Blue.jpg");
 	grassTexture.loadFromFile("Grass.png");
 	RectangleShape board[rows][cols];
@@ -46,7 +54,15 @@ int main()
 			}
 		}
 	Event e;
-	pacman x(1, 1, "Pacman.jpg");
+	pacman x(1, 1, "sheet.png");
+	sf::Clock kiro;
+	kiro.restart();
+	RectangleShape r1, r2;
+	if (r1.getGlobalBounds().intersects(r2.getGlobalBounds()))
+	{
+		r1.setPosition(0, 0);
+
+	}
 	while (window.isOpen())
 	{
 		while (window.pollEvent(e))
@@ -58,19 +74,24 @@ int main()
 				switch (e.key.code)
 				{
 				case Keyboard::Up:
-					x.move('U', arr);
+					x.setD('U');
 					break;
 				case Keyboard::Down:
-					x.move('D', arr);
+					x.setD('D');
 					break;
 				case Keyboard::Right:
-					x.move('R', arr);
+					x.setD('R');
 					break;
 				case Keyboard::Left:
-					x.move('L', arr);
+					x.setD('L');
 					break;
 				}
 			}
+		}
+		if (kiro.getElapsedTime().asMilliseconds() >= 250)
+		{
+			x.move(x.getD(), arr);
+			kiro.restart();
 		}
 		window.clear();
 		for (int i = 0; i < rows; i++)
