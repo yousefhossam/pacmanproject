@@ -1,2 +1,0 @@
-# pacmanproject
-Project Pacman
